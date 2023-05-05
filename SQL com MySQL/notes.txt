@@ -1,0 +1,144 @@
+INTRODUÇÃO A SQL - MySQL
+
+AULA 02 ......................................................................................................................................................
+
+No MySQL, ao criar tabela é preciso passar informações para a sua criação, por exemplo: tipo de informação e quantos campos a tabela vai ter
+	Cada linha da tabela é chamada de 'registro'
+	O limitador de uma tabela é o número de campos (a depender da capacidade de armazenamento)
+	Chave primária: quando um elemento é definido como chave primária ele não pode ser repetido nas linhas da tabela
+		É possível criar chaves primárias compostas, por exemplo, um nome e um cpf associados. Assim, os dois juntos não podem se repetir na tabela
+
+Banco de Dados Relacionais: tabelas de fora (chaves extrangeiras) cruzam informações em uma tabela
+
+Índice de tabela: organização interna do banco de dados que organiza a tabela através de informações, por exemplo: ordem alfabética para organizar nomes de clientes
+
+Equemas: agrupamentos de tabelas que se relacionam entre si (tabelas relacionadas a vendas, por exemplo)
+
+View: é uma consulta armazenada como um objeto de banco de dados. Ela é criada a partir de uma ou mais tabelas e é tratada como uma tabela virtual que pode ser 
+	referenciada em outras consultas SQL.
+
+Join: junta tabelas através de um critério (clientes do sexo masculino, por exemplo). Essa consulta pode ser transformada em um view posteriormente
+
+Procedures e Funções: linguagens proprietárias que permitem, usando comandos SQL, criar lógicas e programações dentro do SQL
+
+Trigger: é um aviso que o usuário programa caso alguma coisa aconteça, por exemplo: ME AVISE CASO ALGUÉM ALTERE UM DADO NA TABELA
+	esse aviso não é um pop up, mas é uma sequência de ações executadas após a trigger ser acionada
+
+Workbench: é um ambiente integrado de desenvolvimento (IDE) que permite aos desenvolvedores criar, gerenciar e manipular bancos de dados relacionais usando a linguagem SQL
+
+CREATE DATABSE/SCHEMA: sintaxe para criar um banco de dados
+	[IF NOT EXISTS] db_name: adicionado isto ao comando create database, coloca uma condicional: se o db não existir, então ele é criado. Se sim, nada é feito
+	É possível criar um database clicando com o botão direito sobre o menu de esquemas à esquerda. Isso agiliza a criação e evita escrita de código
+	
+
+create_specification:
+	[DEFAULT] CHARACTER SET [=] charset_name (especifica qual o charset usado)
+	...
+	Geralmente se usa UTF-8_general_ci
+																													
+DROP DATABASE/SCHEMA [IF EXISTS] NOME_DA_DATABASE: apaga o database 
+
+Para mexer no SQL via Prompt de Comando: mysql -h localhost -u root -p
+	(vai pedir a senha)
+	(a partir daqui, o prompt aceita todos os comando que o workbench aceita na sua interface
+
+	Para selecionar o banco de dados pelo Prompt: use BANCO_DE_DADOS (equivalente ao duplo clique na interface no workbench)
+	(segue a mensagem: databse changed)
+
+	EXIT: sai do programa
+
+AULA 03 ......................................................................................................................................................
+
+Principais Tipos de dados:
+	Numéricos (inteiros, decimais, BIT):
+		Inteiros: TINYINT(1 byte), SMALLINT(2 bytes), MEDIUMINT(3 bytes), INT(4 bytes), BIGINT(8 bytes)
+			Caso o número inteiro seja unsigned (não tenha sinal negativo) o valor de capacidade máxima de armazenagem aumenta
+
+		Decimais: FLOAT: precisão simples (4 bytes)
+			  DOUBLE: precisão dupla (8 bytes) >>> faz um arredondamento mais preciso, por isso utiliza mais bytes 
+		          Exemplo: declarando um campo FLOAT (7,4) ele vai ter 7 casas decimais e 4 casas depois da vírgula. Assim, o número 999,00009 será arredondado para 999,0001
+	
+		O número máximo de dígitos para um número é 65 casas decimais
+
+		BIT: até 64 Bits (armazenado em 1 ou 0, assim: 011100, por exemplo)
+
+		Atributos para os campos numéricos: 
+			SIGNED ou UNSIGNED
+			ZEROFILL: preenche com zeros o que falta apra ocupar completamente o espaço
+			AUTO_INCREMENT: sequência autoincrementada
+	
+		Erros:
+			OUT OF RANGE: vãoocorrer quando os valores estourarem o tamanho máximo	
+	
+	Dara e Hora:
+		DATE: 1000-01-01 até 9999-12-31
+		DATETIME: data com hora
+		TIMESTAMP: 1970-01-01 00:00:01 utc ATÉ 2038-01-19 utc (o range diminui porque tem mais dados para serem armazenados)
+		TIME: -838:59:59 a 839:59:59
+		YEAR: 1901 a 2155 (pode ser expresso no formato 2 ou 4 digitos
+
+	String (char e varchar):
+		CHAR: cadeia de caracteres com valor fixo ( de 0 a 255) - preenche o restante do espaço com vazios
+		VARCHAR: cadeia de caracteres com valor variado ( de 0 a 255)
+		BINARY:
+		VARBINARY:
+		BLOB: TINYBLOB, BLOB, MEDIUMBLOB, LONGBLOB
+		TEXT: TINYTEXT, TEXT, MEDIUMTEXT, LONGTEXT
+		ENUM: permite armazenar uma lista pré-definida de valores
+			ex: Size ENUM('x-small', 'small', 'medium', 'large') >>> só podem ser armazenados esses tipos de texto
+		
+		Atributos dos campos strings:
+			SET e COLLATE: que tipo de conjunto de caracteres são suportados
+
+	Spacial:
+		GEOMETRY: representa área dentro do mapa
+		POINT: grava latitude e longitude
+		LINESTRING: representa uma linha
+		POLYGON: representa área dentro do mapa
+	
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
